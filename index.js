@@ -262,6 +262,13 @@ function getUserLocation() {
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
         reject("Geolocation is not supported by your browser");
+        Swal.fire({
+            title: 'Your Location Isn"t Found!, Auto Detection Failed!',
+            text: 'We Dont Support Your Location Forecast:( Sorry, You Can Try Searching Other Places',
+            icon: 'info',
+            confirmButtonText: 'Okay'
+          });
+          return;
       }
   
       navigator.geolocation.getCurrentPosition(
@@ -273,6 +280,13 @@ function getUserLocation() {
         (err) => {
           console.error("Location error:", err);
           reject("User denied location or error occurred");
+          Swal.fire({
+            title: 'Your Location Isn"t Found!, Auto Detection Failed!',
+            text: 'We Dont Support Your Location Forecast:( Sorry, You Can Try Searching Other Places',
+            icon: 'info',
+            confirmButtonText: 'Okay'
+          });
+          return;
         }
       );
     });
