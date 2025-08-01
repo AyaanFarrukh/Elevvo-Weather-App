@@ -296,7 +296,7 @@ function getUserLocation() {
     });
   }
 
-
+//fine
 
 async function fetchWeatherByCords(lat,lon) {
 
