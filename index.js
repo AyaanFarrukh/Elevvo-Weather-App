@@ -278,17 +278,19 @@ function getUserLocation() {
           const lon = position.coords.longitude;
           resolve({ lat, lon });
         },
-        (err) => {
-          console.error("Location error:", err);
+        (error) => {
+          console.error("Location error:", error);
           reject("User denied location or error occurred");
-          Swal.fire({
-            title: 'Your Location Isn"t Found!, Auto Detection Failed!',
-            icon: 'info',
-            confirmButtonText: 'Okay'
-          });
-          userWeatherBox.classList.add("hide")
-          userLocationText.classList.add("hide");
-          return;
+          if (error.code === error.PERMISSION_DENIED) {
+            Swal.fire({
+                title: 'Your Location Isn"t Found!, Auto Detection Failed!',
+                icon: 'info',
+                confirmButtonText: 'Okay'
+              });
+              userWeatherBox.classList.add("hide")
+              userLocationText.classList.add("hide");
+              return;
+          }
         }
       );
     });
