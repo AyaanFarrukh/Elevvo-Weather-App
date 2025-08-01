@@ -212,6 +212,7 @@ async function fetchWeather(city) {
 
 fetchWeather("Australia");
 loadUserLocationWeather();
+setTimeout(loadUserLocationWeather,5000)
 
 //function for three cities auto weather 
 
@@ -282,10 +283,11 @@ function getUserLocation() {
           reject("User denied location or error occurred");
           Swal.fire({
             title: 'Your Location Isn"t Found!, Auto Detection Failed!',
-            text: 'We Dont Support Your Location Forecast:( Sorry, You Can Try Searching Other Places',
             icon: 'info',
             confirmButtonText: 'Okay'
           });
+          userWeatherBox.classList.add("hide")
+          userLocationText.classList.add("hide");
           return;
         }
       );
